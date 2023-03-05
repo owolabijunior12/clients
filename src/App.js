@@ -3,38 +3,23 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import { Home,Login } from './component'
 import { getAuth } from 'firebase/auth'
 import { app } from './configuration/firebase.configuration'
-// import { jwtDecode, jwtVerify, resignJwt } from 'jwt-js-decode';
+
 const App = () => {
   const firebaseAuth = getAuth(app)
   const nagivate = useNavigate();
   const [auth,setAuth] = useState(false || window.localStorage.getItem("auth")==="true");
-    //  // just decode 'token' into {header: Object, payload: Object, signature: String}
-    //  let jwt = jwtDecode('token');
-    //  console.log(jwt.payload);
- 
-    //  // or verify 'token' with provided secret and decode it
-    //  jwtVerify('token', 'secret').then(res => {
-    //      if (res === true) {
-    //          const jwt = jwtDecode('token');
-    //          console.log(jwt.payload);
-    //      }
-    //  });
-     
-    //  // advanced resignJwt token with newSecret secret should be same type as jwt.header.alg
-    //  resignJwt('token', 'newSecret').then(newToken =>  {
-    //      console.log(newToken);
-    //  });
+  
   useEffect(()=>{
       firebaseAuth.onAuthStateChanged((userCred)=>{
+          console.log(userCred)
         if(userCred){
-          userCred.getIdToken().then((token)=>{
-            console.log("JWT token obtained successfully:", token);
-
-          })
+              userCred.getIdToken().then((token)=>{
+                console.log(token)
+              })
         }else{
           setAuth(false);
-          window.localStorage.setItem("auth", "false");
-          nagivate("./login")
+          window.localStorage.setItem("auth", false);
+          nagivate("./login");
         }
       })
   },[])
