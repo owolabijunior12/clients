@@ -11,6 +11,11 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+use this command to start server`npm run dev`
+You will to start the server side to run the web app
+
+
+
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
