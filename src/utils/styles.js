@@ -1,0 +1,2 @@
+export const isActiveStyles ="text-lg text-headingColor font-semibold hover:textheadingColor duration-100 transition-all "
+export const isNotActiveStyles ="text-lg text-textColor  hover:textheadingColor duration-100 transition-all "

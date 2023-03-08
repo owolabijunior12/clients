@@ -4,6 +4,7 @@ import  Home from './component/Home';
 import Login from './component/Login';
 import { getAuth } from 'firebase/auth'
 import { app } from './configuration/firebase.configuration'
+import { validateUser } from './api';
 
 const App = () => {
   const firebaseAuth = getAuth(app)
@@ -15,7 +16,10 @@ const App = () => {
           console.log(userCred)
         if(userCred){
               userCred.getIdToken().then((token)=>{
-                console.log(token)
+                // console.log(token)
+                validateUser(token).then((data)=>{
+                  console.log(data);
+                })
               })
         }else{
           setAuth(false);
