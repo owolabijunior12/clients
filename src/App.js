@@ -25,13 +25,11 @@ const App = () => {
       })
   },[])
   return (
-    <div className='w-screen h-screen  bg-primary flex justify-center items-center'>
-       <div className='w-screen-half flex flex-column'>
+    <div className='min-w-[680px] h-auto  bg-primary flex justify-center items-center'>       
           <Routes>          
             <Route path='/Login' element={<Login setAuth={setAuth}/>} />
             <Route  path='/*'  element={<Home/>} />
           </Routes>
-       </div>
     </div>
   )
 }
