@@ -1,11 +1,13 @@
 import React from 'react'
-
-const Home = () => {
+import Header from './Header'
+export default function Home() {
   return (
-    <div>
-       home
-    </div>
+    <div className=' w-full  h-auto flex flex-col items-center justify-center bg-primary '>
+       <Header/>
+   </div>
   )
 }
 
-export default Home
+
+// return (
+//    

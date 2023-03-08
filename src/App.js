@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
-import { Home,Login } from './component'
+import  Home from './component/Home';
+import Login from './component/Login';
 import { getAuth } from 'firebase/auth'
 import { app } from './configuration/firebase.configuration'
 

@@ -3,7 +3,7 @@ import {FcGoogle} from "react-icons/fc"
 import {app} from '../configuration/firebase.configuration';
 import {getAuth, GoogleAuthProvider, signInWithPopup}from 'firebase/auth'
 import { useNavigate } from 'react-router-dom';
-const Login = ({setAuth}) => {
+export default function Login ({setAuth}) {
   const firebaseAuth = getAuth(app)
   const provider =new GoogleAuthProvider();
   const navigate  = useNavigate()
@@ -49,4 +49,4 @@ const Login = ({setAuth}) => {
   )
 }
 
-export default Login
+
