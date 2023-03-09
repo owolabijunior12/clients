@@ -6,7 +6,10 @@ import Login from './component/Login';
 import { getAuth } from 'firebase/auth'
 import { app } from './configuration/firebase.configuration'
 import { validateUser } from './api';
+import { actionType } from "./Context/reducer";
 import {useStateValue} from './Context/StateProvider'
+
+
 const App = () => {
   const firebaseAuth = getAuth(app)
   const nagivate = useNavigate();
@@ -18,9 +21,9 @@ const App = () => {
           console.log(userCred)
         if(userCred){
               userCred.getIdToken().then((token)=>{
-                // console.log(token)
+                console.log(token)
                 validateUser(token).then((data)=>{
-                  // console.log(data);
+                  console.log(data);
                   dispatch({
                     type: actionType.SET_USER,
                     user:data,
@@ -31,7 +34,7 @@ const App = () => {
           setAuth(false);
           dispatch({
             type: actionType.SET_USER,
-            user:null,
+            user:data,
           })
           window.localStorage.setItem("auth", false);
           nagivate("./login");

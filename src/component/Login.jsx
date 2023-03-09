@@ -1,12 +1,23 @@
+/* eslint-disable no-undef */
 import React, { useEffect } from 'react'
 import {FcGoogle} from "react-icons/fc"
 import {app} from '../configuration/firebase.configuration';
 import {getAuth, GoogleAuthProvider, signInWithPopup}from 'firebase/auth'
 import { useNavigate } from 'react-router-dom';
+import {useStateValue} from '../Context/StateProvider'
+import { validateUser } from '../api';
+
+
+
+
 export default function Login ({setAuth}) {
   const firebaseAuth = getAuth(app)
   const provider =new GoogleAuthProvider();
-  const navigate  = useNavigate()
+  const navigate  = useNavigate();
+  const [{user},  dispatch] = useStateValue();
+
+
+  
     const loginWithGoogle = async ()=>{
       await signInWithPopup(firebaseAuth, provider)
       .then((userCred)=>{
@@ -15,13 +26,26 @@ export default function Login ({setAuth}) {
           window.localStorage.setItem("auth", "true");
           firebaseAuth.onAuthStateChanged((userCred)=>{
             if(userCred){
+
               userCred.getIdToken().then((token)=>{
                 console.log(token)
+                
+                  validateUser({token}.then((data)=>{
+                      dispatch({
+                        type : actionType.SET_USER,
+                        user: data
+                      })
+                  }))
+
               })
               console.log(userCred);
               navigate('/',{replace:true})
             }else{
-              setAuth(false)
+              setAuth(false);
+              dispatch({
+                type : actionType.SET_USER,
+                user: null
+              })
               navigate("/login")
             }
           })
