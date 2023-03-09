@@ -6,7 +6,7 @@ import {getAuth, GoogleAuthProvider, signInWithPopup}from 'firebase/auth'
 import { useNavigate } from 'react-router-dom';
 import {useStateValue} from '../Context/StateProvider'
 import { validateUser } from '../api';
-
+import  login_bg from '../Asset/video/login_bg.mp4'
 
 
 
@@ -62,6 +62,12 @@ export default function Login ({setAuth}) {
     },[])
   return (
     <div className='relative w-screen h-screen'>
+      <video src={login_bg}
+        autoPlay
+        muted
+        loop
+        className='w-full h-full object-cover'
+            />
         <div className='absolute inset-0 bg-darkOverlay flex justify-center p-4  items-center'>
             <div className='w-full md:w-375 p-4 bg-lightOverlay shadow-2xl rounded-md backdrop-blur-md flex flex-col items-center justify-center'>
                   <div onClick={loginWithGoogle} className=' flex items-center justify-center gap-2 rounded-md bg-cardOverlay cursor-pointer hover:bg-card duration-100 ease-in-out transition-all'>

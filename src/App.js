@@ -4,6 +4,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import  Home from './component/Home';
 import Login from './component/Login';
 import { getAuth } from 'firebase/auth'
+
 import { app } from './configuration/firebase.configuration'
 import { validateUser } from './api';
 import { actionType } from "./Context/reducer";
