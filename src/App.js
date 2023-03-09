@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useEffect, useState } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import  Home from './component/Home';
@@ -5,10 +6,11 @@ import Login from './component/Login';
 import { getAuth } from 'firebase/auth'
 import { app } from './configuration/firebase.configuration'
 import { validateUser } from './api';
-
+import {useStateValue} from './Context/StateProvider'
 const App = () => {
   const firebaseAuth = getAuth(app)
   const nagivate = useNavigate();
+  const [{user}, dispatch] = useStateValue();
   const [auth,setAuth] = useState(false || window.localStorage.getItem("auth")==="true");
   
   useEffect(()=>{
@@ -18,11 +20,19 @@ const App = () => {
               userCred.getIdToken().then((token)=>{
                 // console.log(token)
                 validateUser(token).then((data)=>{
-                  console.log(data);
+                  // console.log(data);
+                  dispatch({
+                    type: actionType.SET_USER,
+                    user:data,
+                  })
                 })
               })
         }else{
           setAuth(false);
+          dispatch({
+            type: actionType.SET_USER,
+            user:null,
+          })
           window.localStorage.setItem("auth", false);
           nagivate("./login");
         }
