@@ -61,6 +61,19 @@ export const Header = () => {
                           <p className='text-base textColor hover:font-semibold duration-150 transition-all ease-in-out'>
                                   Favourite
                           </p>
+                          <hr />  
+                          {
+                            user?.user.role === "admin" &&(                              
+                                  <NavLink  to={'/dashboard/home'}>
+                                    <p className='text-base textColor hover:font-semibold duration-150 transition-all ease-in-out'>
+                                          Admin Dashbroad
+                                   </p>
+                              </NavLink>                              
+                            )
+                          }
+                          
+                          
+                          <hr />
                           <p className='text-base textColor hover:font-semibold duration-150 flex  align-middle transition-all ease-in-out'     onClick={logout}>
                               log Out
                           </p>
