@@ -44,10 +44,10 @@ module.exports = {
         "2xl": "1536px",
       },
       colors: {
-        headingColor: "#2e2e2e",
-        textColor: "#515151",
+        headingColor: "#000",
+        textColor: "#fff",
         cartNumBg: "#e80013",
-        primary: "#f5f3f3",
+        primary: "#481549",
         cardOverlay: "rgba(256,256,256,0.4)",
         darkOverlay: "rgba(0,0,0,0.5)",
         lightOverlay: "rgba(256,256,256,0.2)",
