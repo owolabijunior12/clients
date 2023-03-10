@@ -70,8 +70,8 @@ export default function Login ({setAuth}) {
             />
         <div className='absolute inset-0 bg-darkOverlay flex justify-center p-4  items-center'>
             <div className='w-full md:w-375 p-4 bg-lightOverlay shadow-2xl rounded-md backdrop-blur-md flex flex-col items-center justify-center'>
-                  <div onClick={loginWithGoogle} className=' flex items-center justify-center gap-2 rounded-md bg-cardOverlay cursor-pointer hover:bg-card duration-100 ease-in-out transition-all'>
-                      <FcGoogle className='text-xl'/> Sigin with Google
+                  <div onClick={loginWithGoogle} className=' flex items-center justify-center gap-2 p-2 rounded-md bg-cardOverlay cursor-pointer hover:bg-card duration-100 ease-in-out transition-all'>
+                      <FcGoogle className='text-xl '/> Sigin with Google
                   </div>                                     
             </div>
         </div>
