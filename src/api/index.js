@@ -15,7 +15,7 @@ export const validateUser = async (token) => {
   }
 };
 
-export const getAllArtist = async () => {
+export const getAllArtists = async () => {
   try {
     const res = await axios.get(`${baseURL}api/artist/getAll`);
     return res.data;
@@ -24,7 +24,8 @@ export const getAllArtist = async () => {
   }
 };
 
-export const getAllUsers = async () => {
+
+export const getAllUser = async () => {
   try {
     const res = await axios.get(`${baseURL}api/user/getUser`);
     return res.data;
@@ -42,7 +43,7 @@ export const removeUser = async (userId) => {
   }
 };
 
-export const getAllSong= async () => {
+export const getAllSongs = async () => {
   try {
     const res = await axios.get(`${baseURL}api/song/getAll`);
     return res.data;
@@ -60,9 +61,9 @@ export const getAllAlbums = async () => {
   }
 };
 
-export const changingUserRole = async (userId, role) => {
+export const changeUserRole = async (userId, role) => {
   try {
-    const res = axios.put(`${baseURL}api/user/updateRole/${userId}`, {
+    const res = axios.put(`${baseURL}api/users/updateRole/${userId}`, {
       data: { role: role },
     });
     return res;
