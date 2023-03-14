@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 body{
-    background: #400141;
-    color: #000000;    
+    background: #000000;
+    color: #8c178e;
 }
+/* fb04ff */

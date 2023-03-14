@@ -26,22 +26,22 @@ export const Header = () => {
   };
 
   return (    
-       <header className="flex items-center w-full p-4 md:py-2 md:px-6">
+       <header className="flex items-center w-full mb-6 md:py-2  shadow-2xl shadow-cyan-500/50   md:px-6 bg-black">
             <NavLink to={"/"}>
                     <img src={Logo} alt="logo" className='w-9' />
             </NavLink>      
-            <ul className='flex items-center justify-center ml-7'>
-                <li className='mx-5  text-lg' ><NavLink className={({isActive})=>isActive ? isActiveStyles:isNotActiveStyles } to={"/home" }>Home</NavLink> </li>
-                <li className='mx-5  text-lg' ><NavLink className={({isActive})=>isActive ? isActiveStyles:isNotActiveStyles } to={"/Music"}>Musics</NavLink> </li>
-                <li className='mx-5  text-lg' ><NavLink className={({isActive})=>isActive ? isActiveStyles:isNotActiveStyles } to={"/premium"}>Premium</NavLink> </li>
-                <li className='mx-5  text-lg' ><NavLink className={({isActive})=>isActive ? isActiveStyles:isNotActiveStyles } to={"/contact us"}>Contact us</NavLink> </li>
+            <ul className='flex items-center justify-center ml-7 text-white'>
+                <li className='mx-5  text-lg' ><NavLink className={({isActive})=>isActive ? isActiveStyles:isNotActiveStyles } to={"/home" }><small className='text-white'>Home</small> </NavLink> </li>
+                <li className='mx-5  text-lg' ><NavLink className={({isActive})=>isActive ? isActiveStyles:isNotActiveStyles } to={"/Music"}><small className='text-white'> Musics</small></NavLink> </li>
+                <li className='mx-5  text-lg' ><NavLink className={({isActive})=>isActive ? isActiveStyles:isNotActiveStyles } to={"/premium"}><small className='text-white'>Premium</small></NavLink> </li>
+                <li className='mx-5  text-lg' ><NavLink className={({isActive})=>isActive ? isActiveStyles:isNotActiveStyles } to={"/contact us"}><small className='text-white'>Contact us</small></NavLink> </li>              
             </ul>      
               <div
               onMouseEnter={() => setIsMenu(true)}
               onMouseLeave={() => setIsMenu(false)}
               className='flex  items-center ml-auto cursor-pointer gap-2 relative'>                   
                   <div className='flex flex-col'>
-                      <p className='text-textColor text-lg hover:text-headingColor font-semibold'>{user?.user?.name}</p>
+                      <p className='text-white text-lg hover:text-headingColor font-semibold'>{user?.user?.name}</p>
                      <p className='flex items-center gap-2 text-gray-500 font-normal'>Premium . <FaCrown className='text-sm -ml-1 text-yellow-500'/></p>
                   </div>
                    <img src={user?.user.imageURL} className=' w-12 h-12 min-w[44px] object-cover rounded-full shadow-lg' alt="user-pic" />
