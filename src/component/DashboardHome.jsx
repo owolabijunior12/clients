@@ -5,10 +5,13 @@ import { RiUserStarFill } from "react-icons/ri";
 import { useStateValue } from '../Context/StateProvider'; 
 import { getAllAlbums, getAllArtists, getAllSongs, getAllUser } from '../api/index';
 import { actionType } from '../Context/reducer';
+import {bgColors} from '../utils/styles'
+
 
 export const DashboardCards = ({ icon, name, count }) => {
+  const bg_color =bgColors[parseInt(Math.random()*bgColors.length)]
   return (
-    <div className="p-4 gap-3 h-auto rounded-lg shadow-md bg-textColor text-white">
+    <div style={{background:`${bg_color}`}} className="p-4 gap-3 h-auto rounded-lg shadow-md bg-textColor text-white">
       {icon}
       <p className='text-xl text-white font-bold'>{name}</p>
       <p className='text-xl text-white'>{count}</p>
@@ -20,21 +23,21 @@ const DashboardHome = () => {
   const [{ allUsers, allSong, allAlbum, allArtist }, dispatch] = useStateValue();
   
   useEffect(() => {
-    if (!allUsers) {
+    if (allUsers) {
       getAllUser().then((data) => {
         dispatch({
           type: actionType.SET_ALL_USERS,
-          allUser: data.data
+          allUser: data
         });
         console.log(data);
       });
     }
 
-    if (!allSong) {
+    if (allSong) {
       getAllSongs().then((data) => {
         dispatch({
           type: actionType.SET_ALL_SONGS,
-          allSongs: data.data
+          allSongs: data
         });
         console.log(data);
       });
@@ -44,7 +47,7 @@ const DashboardHome = () => {
       getAllArtists().then((data) => {
         dispatch({
           type: actionType.SET_ARTISTS,
-          artists: data.data
+          artists: data
         });
         console.log(data);
       });
@@ -54,19 +57,19 @@ const DashboardHome = () => {
       getAllAlbums().then((data) => {
         dispatch({
           type: actionType.SET_ALL_ALBUMS,
-          allAlbums: data.data
+          allAlbums: data
         });
-        console.log(data);
+        console.log(allAlbum);
       });
     }
   }, []);
       
     return (
-    <div className='w-full snap-mandatory p-6 flex items-center justify-evenly flex-wrap'>      
+    <div className='w-full snap-mandatory p-6 flex items-center text-black justify-evenly flex-wrap'>      
       <DashboardCards icon={<FaUsers className="text-3xl " />} name={"Users"} count={allUsers?.length > 0 ? allUsers?.length : 0} />
       <DashboardCards icon={<GiLoveSong className="text-3xl " />} name={"Songs"} count={allSong?.length > 0 ? allSong?.length : 0} />
       <DashboardCards icon={<RiUserStarFill className="text-3xl " />} name={"Artist"} count={allArtist?.length > 0 ? allArtist?.length : 0} />
-      <DashboardCards icon={<GiMusicalNotes className="text-3xl " />} name={"Album"} count={allAlbum?.length > 0 ? allAlbum?.length : 0} />                    
+      <DashboardCards icon={<GiMusicalNotes className="text-3xl " />} name={"Album"} count={allAlbum?.length > 0 ? allAlbum?.length : "hell"} />                    
     </div>
   );
 };
