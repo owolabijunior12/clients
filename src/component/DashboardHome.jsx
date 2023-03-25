@@ -5,10 +5,8 @@ import { RiUserStarFill } from 'react-icons/ri';
 import { useStateValue } from '../Context/StateProvider'; 
 import { getAllAlbums, getAllArtists, getAllSongs, getAllUser } from '../api/index';
 import { actionType } from '../Context/reducer';
-// import { bgColors } from '../utils/styles';
 
 export const DashboardCards = ({ icon, name, count }) => {
-  // const bg_color = bgColors[parseInt(Math.random() * bgColors.length)];
   return (
     <div className="p-4 gap-3 h-auto rounded-lg shadow-md bg-textColor text-white">
       {icon}
@@ -26,41 +24,48 @@ const DashboardHome = () => {
       getAllUser().then((data) => {
         dispatch({
           type: actionType.SET_ALL_USERS,
-          allUsers: data.users
+          allUsers: data.user
         });
-        console.log(data);
+        console.log(data.users);
       });
     }
 
     if (!allSongs) {
-      getAllSongs().then((data) => {
-        dispatch({
-          type: actionType.SET_ALL_SONGS,
-          allSongs: data.songs
+      getAllSongs()
+        .then((data) => {
+          dispatch({
+            type: actionType.SET_ALL_SONGS,
+            allSongs: data.songs,
+          });
+          console.log(data);
+        })
+        .catch((error) => {
+          console.error("Error retrieving songs:", error);
         });
-        console.log(data);
-      });
     }
-
+    
+    
     if (!allAlbums) {
       getAllAlbums().then((data) => {
         dispatch({
           type: actionType.SET_ALL_ALBUMS,
-          allAlbums: data.albums
+          allAlbums: data.albums,
         });
         console.log(data.albums);
       });
     }
+    
     if (!allArtists) {
       getAllArtists().then((data) => {
         dispatch({
           type: actionType.SET_ARTISTS,
-          artists: data.artists
+          artists: data.artists,
         });
         console.log(data.artists);
       });
     }
-  }, []);
+    
+  }, [allUsers, allSongs, allAlbums, allArtists]);
 
   return (
     <div className="w-full snap-mandatory p-6 flex items-center text-black justify-evenly flex-wrap">      
