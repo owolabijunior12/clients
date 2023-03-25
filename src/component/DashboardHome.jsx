@@ -20,52 +20,46 @@ const DashboardHome = () => {
   const [{ allUsers, allSongs, allAlbums, allArtists }, dispatch] = useStateValue();
 
   useEffect(() => {
-    if (!allUsers) {
-      getAllUser().then((data) => {
-        dispatch({
-          type: actionType.SET_ALL_USERS,
-          allUsers: data.user
-        });
-        console.log(data.users);
+    getAllUser().then((data) => {
+      dispatch({
+        type: actionType.SET_ALL_USERS,
+        allUsers: data.users
       });
-    }
+      console.log(data.users);
+    });
+    getAllSongs().then((data) => {
+      dispatch({
+        type: actionType.SET_ALL_SONGS,
+        allSongs: data.data
+      });
+      console.log(data);
+    });
+    
 
-    if (!allSongs) {
-      getAllSongs()
-        .then((data) => {
-          dispatch({
-            type: actionType.SET_ALL_SONGS,
-            allSongs: data.songs,
-          });
-          console.log(data);
-        })
-        .catch((error) => {
-          console.error("Error retrieving songs:", error);
-        });
-    }
-    
-    
-    if (!allAlbums) {
-      getAllAlbums().then((data) => {
-        dispatch({
-          type: actionType.SET_ALL_ALBUMS,
-          allAlbums: data.albums,
-        });
-        console.log(data.albums);
+    // getAllSongs().then((data) => {
+    //   dispatch({
+    //     type: actionType.SET_ALL_SONGS,
+    //     allSongs: data.songs,
+    //   });
+    // }).catch((error) => {
+    //   console.error("Error retrieving songs:", error);
+    // });
+
+    getAllAlbums().then((data) => {
+      dispatch({
+        type: actionType.SET_ALL_ALBUMS,
+        allAlbums: data.albums,
       });
-    }
-    
-    if (!allArtists) {
-      getAllArtists().then((data) => {
-        dispatch({
-          type: actionType.SET_ARTISTS,
-          artists: data.artists,
-        });
-        console.log(data.artists);
+    });
+
+    getAllArtists().then((data) => {
+      dispatch({
+        type: actionType.SET_ARTISTS,
+        artists: data.artists,
       });
-    }
-    
-  }, [allUsers, allSongs, allAlbums, allArtists]);
+    });
+
+  }, []);
 
   return (
     <div className="w-full snap-mandatory p-6 flex items-center text-black justify-evenly flex-wrap">      
