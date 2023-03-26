@@ -10,7 +10,7 @@ import {app} from '../configuration/firebase.configuration';
 import {getAuth} from 'firebase/auth'
 
 
-export const Header = () => {
+export const Header = () => { 
   const navigate = useNavigate();
   const [{user}, dispatch] = useStateValue();
   const [isMenu, setIsMenu] = useState()

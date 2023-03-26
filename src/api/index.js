@@ -63,7 +63,7 @@ export const getAllAlbums = async () => {
 
 export const changeUserRole = async (userId, role) => {
   try {
-    const res = axios.put(`${baseURL}api/users/updateRole/${userId}`, {
+    const res = axios.put(`${baseURL}api/user/updateRole/${userId}`, {
       data: { role: role },
     });
     return res;
@@ -107,3 +107,4 @@ export const deleteSongById = async (id) => {
     return null;
   }
 };
+// export changeUserRole

@@ -15,7 +15,7 @@ import {useStateValue} from './Context/StateProvider'
 const App = () => {
   const firebaseAuth = getAuth(app)
   const nagivate = useNavigate();
-  const [{user}, dispatch] = useStateValue();
+  const [{users}, dispatch] = useStateValue();
   const [auth,setAuth] = useState(false || window.localStorage.getItem("auth")==="true");
   
   useEffect(()=>{
@@ -28,7 +28,7 @@ const App = () => {
                   console.log(data);
                   dispatch({
                     type: actionType.SET_USER,
-                    user:data,
+                    users:data,
                   })
                 })
               })
