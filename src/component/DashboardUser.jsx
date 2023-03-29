@@ -17,6 +17,7 @@ export const DashboardUserCard = ({data,index}) => {
   const [isUserRoleUpdated,setIsUserRoleUpdated]=useState(false);
 
 const  updateUserRole =(userId, role)=>{
+  setIsUserRoleUpdated(true)
   console.log(userId,role)
    changeUserRole(userId,role).then((res)=>{
     if(res){
@@ -46,14 +47,14 @@ const  updateUserRole =(userId, role)=>{
       
       <div className='w-275 min-w-[160px] text-center flex items-center justify-center gap-6 relative'>
             <p className='text-base text-textColor w-275 min-w-[160px] text-center'>{data.role}</p>            
-              {/* {data.role==="admin"? "admin":"member"} */}
+              {data.role==="admin"? "admin":"member"}
               {
                 data._id !== user?.user._id&&(
                   <motion.p whileTap={{scale:0.75}} 
                   className='text-[10px] font-semibold text-textColor px-1 bg-black rounded-sm hover:shadow-md'
-                  onClick={()=>{
-                    setIsUserRoleUpdated(true);
-                  }}>
+                  onClick={()=>
+                    setIsUserRoleUpdated(true)
+                  }>
                       {data.role==="admin"?"member":"admin"}
                   </motion.p>
                 )
@@ -72,7 +73,12 @@ const  updateUserRole =(userId, role)=>{
                     <motion.button 
                     whileTap={{scale:0.75}}
                      className='outline-none border-none text-sm px-4 py-1 rounded-md bg-black text-textColor hover:shadow-md' 
-                    onClick={()=>{  updateUserRole(data._id, data.role==="admin"?"member":"admin")}}>
+                     onClick={() =>
+                      updateUserRole(
+                        data._id,
+                        data.role === "admin" ? "member" : "admin"
+                      )
+                    }>
                       Yes
                     </motion.button>
                     <motion.button 

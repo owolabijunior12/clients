@@ -1,5 +1,5 @@
 import { deleteObject, ref } from "firebase/storage";
-import { storage } from "../config/firebase.config";
+import { storage } from "..//configuration/firebase.configuration";
 
 export const filters = [
   { id: 2, name: "HIP HOP", value: "jasp" },
@@ -8,7 +8,7 @@ export const filters = [
   { id: 5, name: "REGGAE", value: "REGGAE" },
   { id: 6, name: "R&B", value: "R&B" },
   { id: 7, name: "GOSPEL", value: "GOSPEL" },
-  { id: 8, name: "", value: "R&B" },
+  // { id: 8, name: "", value: "R&B" },
 ];
 
 export const filterByLanguage = [

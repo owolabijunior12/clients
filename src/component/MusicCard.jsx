@@ -14,7 +14,7 @@ const MusicCard = ( {data, index}) => {
             />
         </div>
         <p className="text-base text-headingColor font-semibold my-2">
-        {data.name.length > 25 ? `${data.name.slice(0, 15)}...` : data.name}
+        {data.name.length > 25 ? `${data.name.slice(0, 14)}...` : data.name}
         <span className="block text-sm text-gray-400 my-1">{data.artist}</span>
       </p> 
       <div className="w-full absolute bottom-2 right-2 flex items-center justify-between px-4">

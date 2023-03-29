@@ -54,7 +54,7 @@ export const removeUser = async (userId) => {
 export const getAllSongs = async () => {
   try {
     const res = await axios.get(`${baseURL}api/song/getAll`);
-    return res.data;
+    return res.data; 
   } catch (error) {
     return null;
   }
@@ -106,18 +106,18 @@ export const saveNewAlbum = async (data) => {
   }
 };
 
-export const saveNewSong = async (data) => {
-  try {
-    const res = axios.post(`${baseURL}api/song/save`, { ...data });
-    return (await res).data.song;
-  } catch (error) {
-    return null;
-  }
-};
+// export const saveNewMusic = async (data) => {
+//   try {
+//     const res = axios.post(`${baseURL}api/music/save`, { ...data });
+//     return (await res).data.music;
+//   } catch (error) {
+//     return null;
+//   }
+// };
 
-export const deleteSongById = async (id) => {
+export const deleteMusicById = async (id) => {
   try {
-    const res = axios.delete(`${baseURL}api/song/delete/${id}`);
+    const res = axios.delete(`${baseURL}api/music/delete/${id}`);
     return res;
   } catch (error) {
     return null;
