@@ -30,7 +30,7 @@ const DashboardHome = () => {
     getAllSongs().then((data) => {
       dispatch({
         type: actionType.SET_ALL_SONGS,
-        allSongs: data.songs
+        songs: data.songs
       });
       console.log(data.songs);
     });

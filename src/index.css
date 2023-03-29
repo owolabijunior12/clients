@@ -3,6 +3,5 @@
 @tailwind utilities;
 body{
     background: #000000;
-    color: #8c178e;
+    color: rgba(256,256,256,0.8);
 }
-/* fb04ff */

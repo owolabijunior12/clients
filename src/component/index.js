@@ -10,3 +10,4 @@ export { default as DashboardMusics } from "./DashboardMusics";
 export { default as DashboardUser } from "./DashboardUser";
 export { default as DashboardUserCard } from "./DashboardUserCard";
 export { default as DashboardNewSong } from "./DashboardNewSong";
+export {default as MusicCard} from "./MusicCard"
