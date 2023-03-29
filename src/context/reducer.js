@@ -3,6 +3,7 @@ export const actionType = {
   SET_SEARCH_TERM: "SET_SEARCH_TERM",
   SET_FILTER_TERM: "SET_FILTER_TERM",
   SET_ARTISTS: "SET_ARTISTS",
+  SET_MUSICS: "SET_MUSICS",
   SET_ARTIST_FILTER: "SET_ARTIST_FILTER",
   SET_LANGUAGE_FILTER: "SET_LANGUAGE_FILTER",
   SET_ALL_USERS: "SET_ALL_USERS",
@@ -19,7 +20,8 @@ const reducer = (state, action) => {
     case actionType.SET_USER:
       return {
         ...state,
-        allUsers: action.allUsers,
+        user: action.user,
+      
       };
     case actionType.SET_SEARCH_TERM:
       return {
@@ -35,6 +37,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         allArtists: action.artists,
+      };
+    case actionType.SET_MUSICS:
+      return {
+        ...state,
+        allMusics: action.musics,
       };
     case actionType.SET_ARTIST_FILTER:
       return {

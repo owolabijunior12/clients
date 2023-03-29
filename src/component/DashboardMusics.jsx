@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DashboardSongs = () => {
+const DashboardMusics = () => {
   return (
     <div>
       DashboardSong
@@ -8,4 +8,4 @@ const DashboardSongs = () => {
   )
 }
 
-export default DashboardSongs
+export default DashboardMusics
