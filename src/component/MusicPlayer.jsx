@@ -8,13 +8,14 @@ import { motion } from "framer-motion";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import { actionType } from "../Context/reducer";
-import { MdPlaylistPlay } from "react-icons/md";
-import { getAllSongs } from "../api";
-import { RiPlayListFill } from "react-icons/ri";
 
+
+import { getallMusics } from "../api";
+import { RiPlayListFill } from "react-icons/ri";
+import { MdPlaylistPlay } from "react-icons/md";
 const MusicPlayer = () => {
   const [isPlayList, setIsPlayList] = useState(false);
-  const [{ allSongs, song, isSongPlaying, miniPlayer }, dispatch] =
+  const [{ allMusics, song, isSongPlaying, miniPlayer }, dispatch] =
     useStateValue();
 
   const closeMusicPlayer = () => {
@@ -41,7 +42,7 @@ const MusicPlayer = () => {
   };
 
   const nextTrack = () => {
-    if (song > allSongs.length) {
+    if (song > allMusics.length) {
       dispatch({
         type: actionType.SET_SONG,
         song: 0,
@@ -69,13 +70,13 @@ const MusicPlayer = () => {
   };
 
   useEffect(() => {
-    if (song > allSongs.length) {
+    if (song > allMusics.length) {
       dispatch({
         type: actionType.SET_SONG,
         song: 0,
       });
     }
-  }, [song]);
+  }, [musics]);
 
   return (
     <div className="w-full full flex items-center gap-3 overflow-hidden">
@@ -85,23 +86,23 @@ const MusicPlayer = () => {
         }`}
       >
         <img
-          src={allSongs[song]?.imageURL}
+          src={allMusics[musics]?.imageURL}
           className="w-40 h-20 object-cover rounded-md"
           alt=""
         />
         <div className="flex items-start flex-col">
           <p className="text-xl text-headingColor font-semibold">
             {`${
-              allSongs[song]?.name.length > 20
-                ? allSongs[song]?.name.slice(0, 20)
-                : allSongs[song]?.name
+              allMusics[musics]?.name.length > 20
+                ? allMusics[musics]?.name.slice(0, 20)
+                : allMusics[musics]?.name
             }`}{" "}
-            <span className="text-base">({allSongs[song]?.album})</span>
+            <span className="text-base">({allMusics[musics]?.album})</span>
           </p>
           <p className="text-textColor">
-            {allSongs[song]?.artist}{" "}
+            {allMusics[musics]?.artist}{" "}
             <span className="text-sm text-textColor font-semibold">
-              ({allSongs[song]?.category})
+              ({allMusics[musics]?.category})
             </span>
           </p>
           <motion.i
@@ -113,7 +114,7 @@ const MusicPlayer = () => {
         </div>
         <div className="flex-1">
           <AudioPlayer
-            src={allSongs[song]?.songUrl}
+            src={allMusics[musics]?.songUrl}
             onPlay={() => console.log("is playing")}
             autoPlay={true}
             showSkipControls={true}
@@ -147,7 +148,7 @@ const MusicPlayer = () => {
             <div className="absolute inset-0 rounded-full bg-red-600 blur-xl animate-pulse"></div>
             <img
               onClick={togglePlayer}
-              src={allSongs[song]?.imageURL}
+              src={allMusics[musics]?.imageURL}
               className="z-50 w-32 h-32 rounded-full object-cover cursor-pointer"
               alt=""
             />
@@ -159,13 +160,13 @@ const MusicPlayer = () => {
 };
 
 export const PlayListCard = () => {
-  const [{ allSongs, song, isSongPlaying }, dispatch] = useStateValue();
+  const [{ allMusics, song, isSongPlaying }, dispatch] = useStateValue();
   useEffect(() => {
-    if (!allSongs) {
-      getAllSongs().then((data) => {
+    if (!allMusics) {
+      getallMusics().then((data) => {
         dispatch({
           type: actionType.SET_ALL_SONGS,
-          allSongs: data.data,
+          allMusics: data.music,
         });
       });
     }
@@ -181,15 +182,15 @@ export const PlayListCard = () => {
     if (song !== songindex) {
       dispatch({
         type: actionType.SET_SONG,
-        song: songindex,
+        music: songindex,
       });
     }
   };
 
   return (
     <div className="absolute left-4 bottom-24 gap-2 py-2 w-350 max-w-[350px] h-510 max-h-[510px] flex flex-col overflow-y-scroll scrollbar-thin rounded-md shadow-md bg-primary">
-      {allSongs.length > 0 ? (
-        allSongs.map((music, index) => (
+      {allMusics.length > 0 ? (
+        allMusics.map((music, index) => (
           <motion.div
             initial={{ opacity: 0, translateX: -50 }}
             animate={{ opacity: 1, translateX: 0 }}
