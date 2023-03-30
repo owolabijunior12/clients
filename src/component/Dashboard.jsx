@@ -27,7 +27,7 @@ const Dashboard = () => {
       <NavLink to={"/dashboard/home"} className={({ isActive }) => isActive ? isActiveStyles : isNotActiveStyles }><IoHome className=" text-textColor m-1" /><small className='text-white'>Home</small> </NavLink>    
       <NavLink to={"/dashboard/user"} className={({ isActive }) => isActive ? isActiveStyles : isNotActiveStyles }><BiUser className='m-1 text-center ' /> <small className='text-white'>Users</small> </NavLink>
       <NavLink to={"/dashboard/music"} className={({ isActive }) => isActive ? isActiveStyles : isNotActiveStyles }><SiApplemusic className='m-1 text-center ' /><small className='text-white'>Music</small>  </NavLink>
-      <NavLink to={"/dashboard/artists"} className={({ isActive }) => isActive ? isActiveStyles : isNotActiveStyles }><ImUserTie className='m-1 text-center ' /><small className='text-white'>Artist </small> </NavLink>  
+      <NavLink to={"/dashboard/artist"} className={({ isActive }) => isActive ? isActiveStyles : isNotActiveStyles }><ImUserTie className='m-1 text-center ' /><small className='text-white'>Artist </small> </NavLink>  
       <NavLink to={"/dashboard/albums"} className={({ isActive }) => isActive ? isActiveStyles : isNotActiveStyles }><MdLibraryMusic/><small className='text-white'>Albums</small>  </NavLink>
     </div>
 

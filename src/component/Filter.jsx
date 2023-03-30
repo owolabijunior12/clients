@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { actionType } from "../Context/reducer";
 import { useStateValue } from "../Context/StateProvider";
-import { getAllAlbums, getAllArtist } from "../api";
+import { getAllAlbums, getAllArtists } from "../api";
 import { filterByLanguage, filters } from "../utils/supportfunctions";
 import FilterButtons from "./FilterButtons";
 import { MdClearAll } from "react-icons/md";
@@ -12,14 +12,14 @@ const Filter = ({ setFilteredSongs }) => {
 
   useEffect(() => {
     if (!artists) {
-      getAllArtist().then((data) => {
+      getAllArtists().then((data) => {
         dispatch({ type: actionType.SET_ARTISTS, artists: data.data });
       });
     }
 
     if (!allAlbums) {
       getAllAlbums().then((data) => {
-        dispatch({ type: actionType.SET_ALL_ALBUMNS, allAlbums: data.data });
+        dispatch({ type: actionType.SET_ALL_ALBUMS, allAlbums: data.data });
       });
     }
   }, []);

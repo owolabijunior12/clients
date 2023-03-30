@@ -20,7 +20,7 @@ const DashboardMusics = () => {
   if (!allMusics) {
     getAllMusics().then((data) => {
       dispatch({
-        type: actionType.SET_ALL_SONGS,
+        type: actionType.SET_MUSICS,
         allSongs: data.music,
       });
       console.log(data.music);
