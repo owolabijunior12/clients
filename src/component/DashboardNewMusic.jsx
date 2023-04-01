@@ -155,7 +155,7 @@ const DashboardNewMusic = () => {
 
   const [
     {
-      artists,
+      allArtists,
       allAlbums,
       albumFilter,
       artistFilter,
@@ -166,7 +166,7 @@ const DashboardNewMusic = () => {
   ] = useStateValue();
 
   useEffect(() => {
-    if (!artists) {
+    if (!allArtists) {
       getAllArtists().then((data) => {
         dispatch({ type: actionType.SET_ARTISTS, artists: data.artists });
       });
@@ -263,7 +263,7 @@ const DashboardNewMusic = () => {
           />
 
           <div className="flex w-full justify-between flex-wrap items-center gap-4">
-            <FilterButtons filterData={artists} flag={"Artist"} />
+            <FilterButtons filterData={allArtists} flag={"Artist"} />
             <FilterButtons filterData={allAlbums} flag={"Albums"} />
             <FilterButtons filterData={filterByLanguage} flag={"Language"} />
             <FilterButtons filterData={filters} flag={"Category"} />
@@ -381,7 +381,7 @@ export const AddNewArtist = () => {
   const [twitter, setTwitter] = useState("");
   const [instagram, setInstagram] = useState("");
 
-  const [{ artists }, dispatch] = useStateValue();
+  const [{ allArtists }, dispatch] = useStateValue();
 
   const deleteImageObject = (songURL) => {
     setIsArtist(true);
@@ -427,7 +427,7 @@ export const AddNewArtist = () => {
 
   return (
     <div className="flex items-center justify-evenly w-full flex-wrap">
-      <div className="bg-card  backdrop-blur-md w-full lg:w-225 h-225 rounded-md border-2 border-dotted border-gray-300 cursor-pointer">
+      <div className="bg-yellow  backdrop-blur-md w-full lg:w-225 h-225 rounded-md border-2 border-dotted border-gray-300 cursor-pointer">
         {isArtist && <ImageLoader progress={artistProgress} />}
         {!isArtist && (
           <>
@@ -449,7 +449,7 @@ export const AddNewArtist = () => {
                 />
                 <button
                   type="button"
-                  className="absolute bottom-3 right-3 p-3 rounded-full bg-red-500 text-xl cursor-pointer outline-none hover:shadow-md  duration-500 transition-all ease-in-out"
+                  className="absolute bottom-3 right-3 p-3 rounded-full bg-green-500 text-xl cursor-pointer outline-none hover:shadow-md  duration-500 transition-all ease-in-out"
                   onClick={() => {
                     deleteImageObject(artistCoverImage);
                   }}

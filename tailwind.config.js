@@ -58,6 +58,10 @@ module.exports = {
         cartTotal: "#343739",
         loaderOverlay: "rgba(256,256,256,0.1)",
       },
+      animation: {
+        bounce200: 'bounce 1s infinite 200ms',
+        bounce400: 'bounce 1s infinite 400ms',
+    },
     },
   },
   plugins: [

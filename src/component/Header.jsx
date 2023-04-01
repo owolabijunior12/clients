@@ -50,7 +50,7 @@ export const Header = () => {
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 50 }}
-                  className='absolute z-10 p-4 top-12 right-0 gap-4 w-275 bg-card shadow-lg rounded-lg backdrop-blur-sm flex-col'>
+                  className='absolute z-10 p-4 top-12 right-0 gap-4 w-275 bg-black shadow-lg rounded-lg backdrop-blur-sm flex-col'>
 
                         <NavLink>
                               <p className='text-base textColor hover:font-semibold duration-150 transition-all ease-in-out'>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useStateValue } from "../Context/StateProvider";
-
 import { motion } from "framer-motion";
 import { MdDelete } from "react-icons/md";
 import { actionType } from "../Context/reducer";
@@ -11,7 +10,7 @@ const DashboardAblum = () => {
   useEffect(() => {
     if (!allAlbums) {
       getAllAlbums().then((data) => {
-        dispatch({ type: actionType.SET_ALL_ALBUMNS, allAlbums: data.data });
+        dispatch({ type: actionType.SET_ALL_ALBUMS, allAlbums: data.data });
       });
     }
   }, []);
@@ -37,7 +36,7 @@ export const AlbumCard = ({ data, index }) => {
       transition={{ duration: 0.3, delay: index * 0.1 }}
       className="relative  overflow-hidden w-44 min-w-180 px-2 py-4 gap-3 cursor-pointer hover:shadow-xl hover:bg-card bg-gray-100 shadow-md rounded-lg flex flex-col items-center"
     >
-      <img
+      < motion.img
         src={data?.imageURL}
         className="w-full h-40 object-cover rounded-md"
         alt=""
