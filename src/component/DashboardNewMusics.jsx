@@ -176,6 +176,7 @@ export const  FileUpLoader =({
       name="upload-files"
       accept={`${isImage?"image/*":"audio/*"}`}
       onChange={uploadFile}
+      className="w-0 h-0"
       />
     </label>
   )
