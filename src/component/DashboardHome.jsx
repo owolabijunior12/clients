@@ -27,23 +27,6 @@ const DashboardHome = () => {
       });
       console.log(data.users);
     });
-    getAllSongs().then((data) => {
-      dispatch({
-        type: actionType.SET_ALL_SONGS,
-        songs: data.songs
-      });
-      console.log(data.songs);
-    });
-    
-
-    // getAllSongs().then((data) => {
-    //   dispatch({
-    //     type: actionType.SET_ALL_SONGS,
-    //     allSongs: data.songs,
-    //   });
-    // }).catch((error) => {
-    //   console.error("Error retrieving songs:", error);
-    // });
 
     getAllAlbums().then((data) => {
       dispatch({
@@ -70,8 +53,7 @@ const DashboardHome = () => {
 
   return (
     <div className="w-full snap-mandatory p-6 flex items-center text-black justify-evenly flex-wrap">      
-      <DashboardCards icon={<FaUsers className="text-3xl" />} name="Users" count={allUsers?.length ?? 0} />
-      {/* <DashboardCards icon={<GiLoveSong className="text-3xl" />} name="Songs" count={allSongs?.length ?? 0} /> */}
+      <DashboardCards icon={<FaUsers className="text-3xl" />} name="Users" count={allUsers?.length ?? 0} />    
       <DashboardCards icon={<RiUserStarFill className="text-3xl" />} name="Music" count={allMusics?.length ?? 0} />
       <DashboardCards icon={<RiUserStarFill className="text-3xl" />} name="Artists" count={allArtists?.length ?? 0} />
       <DashboardCards icon={<GiMusicalNotes className="text-3xl" />} name="Albums" count={allAlbums?.length ?? 0} />                    

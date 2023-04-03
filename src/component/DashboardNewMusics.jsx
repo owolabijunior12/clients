@@ -129,37 +129,50 @@ const DashboardNewMusics = () => {
 //!file upload from local decive
 export const  FileUpLoader =({
   updateState,
+  setAlert,
+  alertMsg,
   setProgress,
   isLoading,
   isImage,
 })=>{
 
-  const uploadFile=(e)=>{
-
+  const uploadFile = (e) => {
     isLoading(true);
-    const uploadFile= e.target.file[0];
-    const storageRef =ref(
+    const imageFile = e.target.files[0];
+    const storageRef = ref(
       storage,
-      `${isImage?"Image":"Audio"}/${Date.now()}-${uploadFile.name}`
+      `${isImage ? "Images" : "Audio"}/${Date.now()}-${imageFile.name}`
     );
-    const uploadTask =uploadBytesResumable(storageRef,uploadFile);
+    const uploadTask = uploadBytesResumable(storageRef,uploadFile);
+
     uploadTask.on(
       "state_changed",
-      (snapshot)=>{
-        setProgress((snapshot.bytesTransferred /snapshot.totalBytes)*100)
-      },
-      (err)=>{
-        console.log(err);
-      },
-      ()=>{
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl)=>{
-          updateState(downloadUrl);
-          isLoading(false)
-        })
-      }
-    )
+      (snapshot) => {
+        setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+      },  
 
-  }
+      (error) => {
+        setAlert("error");
+        alertMsg("File upload failed.");
+        setTimeout(() => {
+          setAlert(null);
+        }, 4000);
+        isLoading(false);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
+          updateState (downloadUrl);
+          setProgress(0);
+          isLoading(false);
+          setAlert("success");
+          alertMsg("File uploaded successfully");
+          setTimeout(() => {
+            setAlert(null);
+          }, 4000);
+        });
+      }
+    );
+  }; 
 
   return (
     <label>

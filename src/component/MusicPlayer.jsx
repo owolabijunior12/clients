@@ -10,12 +10,12 @@ import "react-h5-audio-player/lib/styles.css";
 import { actionType } from "../Context/reducer";
 
 
-import { getallMusics } from "../api";
+import { getAllMusics } from "../api";
 import { RiPlayListFill } from "react-icons/ri";
 import { MdPlaylistPlay } from "react-icons/md";
 const MusicPlayer = () => {
   const [isPlayList, setIsPlayList] = useState(false);
-  const [{ allMusics, song, isSongPlaying, miniPlayer }, dispatch] =
+  const [{ allMusics,musics, isSongPlaying, miniPlayer }, dispatch] =
     useStateValue();
 
   const closeMusicPlayer = () => {
@@ -45,12 +45,12 @@ const MusicPlayer = () => {
     if (song > allMusics.length) {
       dispatch({
         type: actionType.SET_SONG,
-        song: 0,
+       musics: 0,
       });
     } else {
       dispatch({
         type: actionType.SET_SONG,
-        song: song + 1,
+        musics:musics + 1,
       });
     }
   };
@@ -59,12 +59,12 @@ const MusicPlayer = () => {
     if (song === 0) {
       dispatch({
         type: actionType.SET_SONG,
-        song: 0,
+       musics: 0,
       });
     } else {
       dispatch({
         type: actionType.SET_SONG,
-        song: song - 1,
+       musics:musics - 1,
       });
     }
   };
@@ -73,7 +73,7 @@ const MusicPlayer = () => {
     if (song > allMusics.length) {
       dispatch({
         type: actionType.SET_SONG,
-        song: 0,
+       musics: 0,
       });
     }
   }, [musics]);
@@ -160,12 +160,12 @@ const MusicPlayer = () => {
 };
 
 export const PlayListCard = () => {
-  const [{ allMusics, song, isSongPlaying }, dispatch] = useStateValue();
+  const [{ allMusics,musics, isSongPlaying }, dispatch] = useStateValue();
   useEffect(() => {
     if (!allMusics) {
-      getallMusics().then((data) => {
+      getAllMusics().then((data) => {
         dispatch({
-          type: actionType.SET_ALL_SONGS,
+          type: actionType.SET_ALL_,
           allMusics: data.music,
         });
       });
@@ -179,10 +179,10 @@ export const PlayListCard = () => {
         isSongPlaying: true,
       });
     }
-    if (song !== songindex) {
+    if (song !==musicsindex) {
       dispatch({
         type: actionType.SET_SONG,
-        music: songindex,
+        music:musicsindex,
       });
     }
   };
@@ -196,7 +196,7 @@ export const PlayListCard = () => {
             animate={{ opacity: 1, translateX: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
             className={`group w-full p-4 hover:bg-card flex gap-3 items-center cursor-pointer ${
-              music?._id === song._id ? "bg-card" : "bg-transparent"
+              music?._id ===musics._id ? "bg-card" : "bg-transparent"
             }`}
             onClick={() => setCurrentPlaySong(index)}
           >
