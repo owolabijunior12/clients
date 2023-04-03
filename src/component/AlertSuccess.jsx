@@ -11,10 +11,10 @@ const AlertSuccess = ({ msg }) => {
       exit={{ opacity: 0, y: -100, scale: 0.6 }}
       className="w-screen z-50 fixed top-0 left-0 flex items-center justify-center"
     >
-      <div className="w-460  bg-card rounded-md shadow-md backdrop-blur-md px-4 py-2 flex items-center gap-4">
+      <div className="w-460  bg-primary rounded-md shadow-md backdrop-blur-md px-4 py-2 flex items-center gap-4">
         <div className="w-[4px] h-10 bg-green-500 rounded-md"></div>
-        <BsEmojiSmile className="text-xl text-green-500" />
-        <p className="text-base font-semibold text-textColor">
+        <BsEmojiSmile className="text-xl text-green-500" />        
+        <p className=" text-2xl font-semibold text-textColor">
           {msg?.length > 50 ? `${msg?.slice(0, 50)}...` : msg}
         </p>
       </div>
