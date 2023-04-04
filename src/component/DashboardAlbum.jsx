@@ -11,7 +11,7 @@ const DashboardAblum = () => {
     if (!allAlbums) {
       getAllAlbums().then((data) => {
         dispatch({ type: actionType.SET_ALL_ALBUMS, allAlbums: data.data });
-      });
+      }); 
     }
   }, []);
   return (

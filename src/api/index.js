@@ -115,7 +115,7 @@ export const saveNewAlbum = async (data) => {
 //   }
 // };
 
-export const deleteMusicById = async (id) => {
+export const deleteMusic= async (id) => {
   try {
     const res = axios.delete(`${baseURL}api/music/delete/${id}`);
     return res;

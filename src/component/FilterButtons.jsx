@@ -32,7 +32,7 @@ const FilterButtons = ({ filterData, flag }) => {
   };
 
   return (
-    <div className="border border-gray-300 rounded-md px-4 bg-black py-1 relative cursor-pointer hover:border-gray-400">
+    <div className="border border-textColor rounded-md px-4 bg-black py-1 relative cursor-pointer hover:border-gray-400">
       <p
         className="text-base tracking-wide text-textColor flex items-center gap-2 "
         onClick={() => setFilterMenu(!filterMenu)}

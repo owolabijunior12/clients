@@ -116,11 +116,11 @@ export const DisabledButton = () => {
     <button
       disabled
       type="button"
-      className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center"
+      className="text-textColor bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center"
     >
       <svg
         role="status"
-        className="inline w-4 h-4 mr-3 text-white animate-spin"
+        className="inline w-4 h-4 mr-3 text-textColor animate-spin"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -251,15 +251,15 @@ const DashboardNewMusic = () => {
   };
 
   return (
-    <div className="flex items-center justify-center p-4 border border-gray-300 rounded-md">     
+    <div className="flex items-center justify-center p-4 border border-textColor rounded-md">     
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full">
       
-        <div className="flex flex-col items-center justify-center gap-4">
+        <div className="flex flex-col items-center text-textColor justify-center gap-4">
         <h1 className="text-4xl"> Music Details</h1>
           <input
             type="text"
             placeholder="Type your song name"
-            className="w-full p-3 rounded-md text-base font-semibold text-textColor outline-none shadow-sm border border-gray-300 bg-transparent"
+            className="w-full p-3 rounded-md text-base font-semibold text-textColor outline-none shadow-sm border border-textColor bg-transparent"
             value={musicName}
             onChange={(e) => setMusicName(e.target.value)}
           />
@@ -272,7 +272,7 @@ const DashboardNewMusic = () => {
           </div>
 
           <div className="flex items-center justify-between gap-2 w-full flex-wrap">
-            <div className="bg-primary  backdrop-blur-md w-full lg:w-300 h-300 rounded-md border-2 border-dotted border-gray-300 cursor-pointer">
+            <div className="bg-primary  backdrop-blur-md w-full lg:w-300 h-300 rounded-md border-2 border-dotted border-textColor cursor-pointer">
               {isImageLoading && <ImageLoader progress={uploadProgress} />}
               {!isImageLoading && (
                 <>
@@ -299,7 +299,7 @@ const DashboardNewMusic = () => {
                           deleteImageObject(musicImageUrl, "image");
                         }}
                       >
-                        <MdDelete className="text-white" />
+                        <MdDelete className="text-textColor" />
                       </button>
                     </div>
                   )}
@@ -307,7 +307,7 @@ const DashboardNewMusic = () => {
               )}
             </div>
 
-            <div className="bg-primary  backdrop-blur-md w-full lg:w-300 h-300 rounded-md border-2 border-dotted border-gray-300 cursor-pointer">
+            <div className="bg-primary  backdrop-blur-md w-full lg:w-300 h-300 rounded-md border-2 border-dotted border-textColor cursor-pointer">
               {isAudioLoading && <ImageLoader progress={uploadProgress} />}
               {!isAudioLoading && (
                 <>
@@ -330,7 +330,7 @@ const DashboardNewMusic = () => {
                           deleteImageObject(audioAsset, "audio");
                         }}
                       >
-                        <MdDelete className="text-white" />
+                        <MdDelete className="text-textColor" />
                       </button>
                     </div>
                   )}
@@ -344,7 +344,7 @@ const DashboardNewMusic = () => {
               ) : (
                 <motion.button
                   whileTap={{ scale: 0.75 }}
-                  className="px-8 py-2 rounded-md text-white bg-red-600 hover:shadow-lg"
+                  className="px-8 py-2 rounded-md text-textColor border border-textColor bg-primary hover:shadow-lg"
                   onClick={saveMusic}
                 >
                   Send
@@ -400,19 +400,19 @@ export const AddNewArtist = () => {
   };
 
   const saveArtist = () => {
-    if (!artistCoverImage || !artistName) {
+    if (!artistCoverImage || !artistName || !twitter || !instagram) {
       setAlert("error");
       setAlertMsg("Required fields are missing");
       setTimeout(() => {
         setAlert(null);
       }, 4000);
-    } else {
+    }else {
       setIsArtist(true);
       const data = {
         name: artistName,
         imageURL: artistCoverImage,
-        twitter: twitter,
-        instagram: instagram,
+        twitter:`www.twitter.com/${twitter}`,
+        instagram: `www.instagram.com/${instagram}`,
       };
       saveNewArtist(data).then((res) => {
         getAllArtists().then((artistData) => {
@@ -420,7 +420,7 @@ export const AddNewArtist = () => {
         });      
       });
       setIsArtist(false);
-      setArtistCoverImage(null);
+      setArtistCoverImage(null); 
       setArtistName("");
       setTwitter("");
       setInstagram("");
@@ -429,7 +429,7 @@ export const AddNewArtist = () => {
 
   return (
     <div className="flex items-center justify-evenly w-full flex-wrap">      
-      <div className="bg-primary  backdrop-blur-md w-full lg:w-225 h-225 rounded-md border-2 border-dotted border-gray-300 cursor-pointer">
+      <div className="bg-primary  backdrop-blur-md w-full lg:w-225 h-225 rounded-md border-2 border-dotted border-textColor cursor-pointer">
         {isArtist && <ImageLoader progress={artistProgress} />}
         {!isArtist && (
           <>
@@ -451,12 +451,12 @@ export const AddNewArtist = () => {
                 />
                 <button
                   type="button"
-                  className="absolute bottom-3 right-3 p-3 rounded-full bg-green-500 text-xl cursor-pointer outline-none hover:shadow-md  duration-500 transition-all ease-in-out"
+                  className="absolute bottom-3 right-3 p-3 rounded-full bg-red-500 text-xl cursor-pointer outline-none hover:shadow-md  duration-500 transition-all ease-in-out"
                   onClick={() => {
                     deleteImageObject(artistCoverImage);
                   }}
                 >
-                  <MdDelete className="text-white" />
+                  <MdDelete className="text-textColor" />
                 </button>
               </div>
             )}
@@ -469,13 +469,13 @@ export const AddNewArtist = () => {
         <input
           type="text"
           placeholder="Artist Name"
-          className="w-full lg:w-300 p-3 rounded-md text-base font-semibold text-textColor outline-none shadow-sm border border-gray-300 bg-transparent"
+          className="w-full lg:w-300 p-3 rounded-md text-base font-semibold text-textColor outline-none shadow-sm border border-textColor bg-transparent"
           value={artistName}
           onChange={(e) => setArtistName(e.target.value)}
         />
 
-        <div className="w-full lg:w-300 p-3 flex items-center rounded-md  shadow-sm border border-gray-300">
-          <p className="text-base font-semibold text-gray-400">
+        <div className="w-full lg:w-300 p-3 flex items-center rounded-md  shadow-sm border border-textColor">
+          <p className="text-base font-semibold text-textColor">
             www.twitter.com/
           </p>
           <input
@@ -487,8 +487,8 @@ export const AddNewArtist = () => {
           />
         </div>
 
-        <div className="w-full lg:w-300 p-3 flex items-center rounded-md  shadow-sm border border-gray-300">
-          <p className="text-base font-semibold text-gray-400">
+        <div className="w-full lg:w-300 p-3 flex items-center rounded-md  shadow-sm border border-textColor">
+          <p className="text-base font-semibold text-textColor">
             www.instagram.com/
           </p>
           <input
@@ -506,7 +506,7 @@ export const AddNewArtist = () => {
           ) : (
             <motion.button
               whileTap={{ scale: 0.75 }}
-              className="px-8 py-2 rounded-md text-white bg-red-600 hover:shadow-lg"
+              className="px-8 py-2 rounded-md border-textColor text-textColor border hover:shadow-lg"
               onClick={saveArtist}
             >
               Send
@@ -583,7 +583,7 @@ export const AddNewAlbum = () => {
 
   return (
     <div className="flex items-center justify-evenly w-full flex-wrap">
-      <div className="bg-primary my-5 backdrop-blur-md w-full lg:w-225 h-225 rounded-md border-2 border-dotted border-gray-300 cursor-pointer">
+      <div className="bg-primary my-5 backdrop-blur-md w-full lg:w-225 h-225 rounded-md border-2 border-dotted border-textColor cursor-pointer">
         {isArtist && <ImageLoader progress={artistProgress} />}
         {!isArtist && (
           <>
@@ -610,7 +610,7 @@ export const AddNewAlbum = () => {
                     deleteImageObject(artistCoverImage);
                   }}
                 >
-                  <MdDelete className="text-white" />
+                  <MdDelete className="text-textColor" />
                 </button>
               </div>
             )}
@@ -623,7 +623,7 @@ export const AddNewAlbum = () => {
         <input
           type="text"
           placeholder="Artist Name"
-          className="w-full lg:w-300 p-3 rounded-md text-base font-semibold text-textColor outline-none shadow-sm border border-gray-300 bg-transparent"
+          className="w-full lg:w-300 p-3 rounded-md text-base font-semibold text-textColor outline-none shadow-sm border border-textColor bg-transparent"
           value={artistName}
           onChange={(e) => setArtistName(e.target.value)}
         />
@@ -634,7 +634,7 @@ export const AddNewAlbum = () => {
           ) : (
             <motion.button
               whileTap={{ scale: 0.75 }}
-              className="px-8 py-2 rounded-md text-white bg-red-600 hover:shadow-lg"
+              className="px-8 py-2 rounded-md border-textColor text-textColor bg-primary border hover:shadow-lg"
               onClick={saveArtist}
             >
               Send

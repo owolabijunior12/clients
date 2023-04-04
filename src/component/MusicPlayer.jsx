@@ -12,7 +12,7 @@ import { actionType } from "../Context/reducer";
 
 import { getAllMusics } from "../api";
 import { RiPlayListFill } from "react-icons/ri";
-import { MdPlaylistPlay } from "react-icons/md";
+// import { MdPlaylistPlay } from "react-icons/md";
 const MusicPlayer = () => {
   const [isPlayList, setIsPlayList] = useState(false);
   const [{ allMusics,musics, isSongPlaying, miniPlayer }, dispatch] =
