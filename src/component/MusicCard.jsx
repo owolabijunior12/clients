@@ -1,63 +1,83 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import {  IoTrash } from "react-icons/io5";
-import { deleteMusic,
-  getAllAlbums,
-  getAllArtists ,
-  getAllMusics,
-  saveNewAlbum,
-  saveNewArtist,
-  saveNewMusic,
+import {
+    deleteArtist,
+    deleteMusic,
+    deleteAlbum,
+    getAllAlbums,
+    getAllArtists ,
+    getAllMusics
 } from '../api';
 import { useStateValue } from '../Context/StateProvider';
 import { actionType } from '../Context/reducer';
+import { storage } from '../configuration/firebase.configuration';
+import { deleteObject, ref } from 'firebase/storage';
 
 
 const MusicCard = ( {data, index,type}) => {   
-  const [{alertType,getAllAlbums,getAllArtists,getAllMusics}, dispatch] = useStateValue( )  
+  const [{alertType,allAlbums,allArtists,allMusics,musicIndex, isSongPlaying}, dispatch] = useStateValue( )  
   const [isDeleted, setIsDeleted] = useState(false);
 
-  
-
-  const deleteObject = (data ) =>{
-    if(type === "song"){
-      deleteMusic(data._id).then((res)=>{
-        if(res.data){
-            dispatch({
-                type:actionType.SET_ALERT_TYPE,
-                alertType:"success"
-            });
-            setInterval(()=>{
-              dispatch({
-                type:actionType.SET_ALERT_TYPE,
-                alertType:null
-            });
-            },3000);
-            getAllMusics().then((data)=>{
-              console.log(data.musics)
-              dispatch({
-                type:actionType.data.musics
-              })
-            })
-        }
-      })
-    }else{
+const deleteData =(data) =>{
+  console.log(data);
+  //!delete music
+  const deleteRef = ref(storage,data.imageURL);
+  deleteObject(deleteRef).then(()=>{});
+  deleteMusic(data._id).then((res)=>{
+    if(res.data){
+      getAllMusics().then((data)=>{
+        console.log(data.music)
         dispatch({
-          type:actionType.SET_ALERT_TYPE,
-          alertType:"danger"
+          type: actionType.SET_MUSICS,
+          musics: data.music,
         })
-        setInterval(()=>{
-          dispatch({
-            type:actionType.SET_ALERT_TYPE,
-            alertType:null
-        });
-        },3000);
+      })
     }
+  })
+  //! delete artist
+  deleteArtist(data._id).then((res)=>{
+    if(res.data){
+      getAllArtists().then((data)=>{
+        console.log(data.music)
+        dispatch({
+          type: actionType.SET_ARTISTS,
+          artists: data.artists,
+        })
+      })
+    }
+  })
+  //!delete album
+  deleteAlbum(data._id).then((res)=>{
+    if(res.data){
+      getAllAlbums().then((data)=>{
+        console.log(data.albums)
+        dispatch({
+          type: actionType.SET_ALL_ALBUMS,
+          allAlbums: data.albums,
+        })
+      })
+    }
+  })
+}
 
-  }
+   
 
 const addToContext = () => {
   console.log(type);
+  if(!isSongPlaying){
+    dispatch({
+      type: actionType.SET_SONG_PLAYING,
+      isSongPlaying:true
+    })
+  }
+
+  if(!musicIndex !== index){
+    dispatch({
+      type:actionType.SET_MUSICS_INDEX,  
+      musicIndex:index
+    })
+  }
 }
 
   return (
@@ -98,7 +118,7 @@ const addToContext = () => {
                 className='px-2 py-1 text-sm uppercase bg-primary rounded-md hover:red-500 cursor-pointer'
                 whileTap={{scale:0.7}}
                 onClick={()=>{
-                  deleteObject()
+                  deleteData()
                 }}
               >
                 Yes

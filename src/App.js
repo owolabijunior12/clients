@@ -4,8 +4,9 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import  Home from './component/Home';
 import Login from './component/Login';
 import Dashboard  from './component/Dashboard';
+import MusicPlayer from './component/MusicPlayer';
 import { getAuth } from 'firebase/auth'
-
+import { AnimatePresence,motion } from 'framer-motion';
 import { app } from './configuration/firebase.configuration'
 import { validateUser } from './api';
 import { actionType } from "./Context/reducer";
@@ -15,7 +16,7 @@ import {useStateValue} from './Context/StateProvider'
 const App = () => {
   const firebaseAuth = getAuth(app)
   const nagivate = useNavigate();
-  const [{users}, dispatch] = useStateValue();
+  const [{users,isSongPlaying}, dispatch] = useStateValue();
   const [auth,setAuth] = useState(false || window.localStorage.getItem("auth")==="true");
   
   useEffect(()=>{
@@ -44,13 +45,26 @@ const App = () => {
       })
   },[])
   return (
-    <div className='min-w-[680px] h-auto  bg-primary flex justify-center items-center'>       
-          <Routes>          
-            <Route path='/Login' element={<Login setAuth={setAuth}/>} />
-            <Route  path='/*'  element={<Home/>} />
-            <Route path="/dashboard/*" element={<Dashboard />} />
-          </Routes>
-    </div>
+    <AnimatePresence>
+                <div className='min-w-[680px] h-auto bg-primary flex justify-center items-center'>       
+                  <Routes>          
+                    <Route path='/Login' element={<Login setAuth={setAuth}/>} />
+                    <Route  path='/*'  element={<Home/>} />
+                    <Route path="/dashboard/*" element={<Dashboard />} />
+                  </Routes>
+                  
+            </div>
+            {isSongPlaying&&(
+                    <motion.div
+                      initial ={{opacity:0,y:50}}
+                      animate ={{opacity:1,y:0}}
+                      className={`fixed w-full min-w-[550] h-25 insert-x-0 border my-5 bg-primary border-textColor bg-cardOverlay  drop-shadow-2xl backdrop-blur-md flex  items-center justify-center`}
+                    >
+                        <MusicPlayer/>
+                    </motion.div>
+                  )}
+    </AnimatePresence>
+  
   )
 }
 

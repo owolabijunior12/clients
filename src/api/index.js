@@ -123,4 +123,20 @@ export const deleteMusic= async (id) => {
     return null;
   }
 };
+export const deleteAlbum= async (id) => {
+  try {
+    const res = axios.delete(`${baseURL}api/album/delete/${id}`);
+    return res;
+  } catch (error) {
+    return null;
+  }
+};
+export const deleteArtist= async (id) => {
+  try {
+    const res = axios.delete(`${baseURL}api/artist/delete/${id}`);
+    return res;
+  } catch (error) {
+    return null;
+  }
+};
 // export changeUserRole

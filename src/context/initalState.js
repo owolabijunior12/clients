@@ -15,5 +15,5 @@ export const initialState = {
   music: 0,
   isSongPlaying: false,
   miniPlayer: false,
-  musicIndex: 0
+  musicIndex  : 0
 };
