@@ -8,11 +8,9 @@ export const initialState = {
   allUsers: null,
   allArtists: null,
   allMusics: null,
-  allSongs: null,
   allAlbums: null,
   albumFilter: null,
-  song: 0,
-  music: 0,
+  musics : 0,
   isSongPlaying: false,
   miniPlayer: false,
   musicIndex  : 0
