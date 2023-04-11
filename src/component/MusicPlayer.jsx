@@ -67,7 +67,7 @@ const MusicPlayer = () => {
   useEffect(() => {
     if (musics > allMusics.length) {
       dispatch({
-        type: actionType.SET_SONG,
+        type: actionType.SET_MUSICS,
         musics: 0,
       });
     }
@@ -119,10 +119,10 @@ const MusicPlayer = () => {
       </div>
       <div className="h-full flex items-center justify-center flex-col gap-3">
         <motion.i whileTap={{ scale: 0.8 }} onClick={closeMusicPlayer}>
-          <IoMdClose className="text-textColor hover:text-headingColor text-2xl cursor-pointer" />
+          <IoMdClose className="text-textColor hover:text-headingColor text-2xl cursor-pointer" values="close player"/>
         </motion.i>
         <motion.i whileTap={{ scale: 0.8 }} onClick={togglePlayer}>
-          <IoArrowRedo className="text-textColor hover:text-headingColor text-2xl cursor-pointer" />
+          <IoArrowRedo className="text-textColor hover:text-headingColor text-2xl cursor-pointer" values="share" />
         </motion.i>
       </div>
     </div>
@@ -147,6 +147,7 @@ const MusicPlayer = () => {
             className="z-50 w-32 h-32 rounded-full object-cover cursor-pointer"
             alt=""
           />
+          IoMusicalNote
         </div>
       </motion.div>
     )}

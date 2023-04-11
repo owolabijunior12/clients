@@ -59,7 +59,7 @@ const Filter = ({ setFilteredSongs }) => {
       <FilterButtons filterData={allAlbums} flag={"Albums"} />
 
       <FilterButtons filterData={filterByLanguage} flag={"Language"} />
-
+{/* 
       <motion.i
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -67,7 +67,7 @@ const Filter = ({ setFilteredSongs }) => {
         onClick={clearAllFilter}
       >
         <MdClearAll className="text-textColor text-xl cursor-pointer" />
-      </motion.i>
+      </motion.i> */}
     </div>
   );
 };

@@ -10,6 +10,7 @@ import { AnimatePresence,motion } from 'framer-motion';
 import { app } from './configuration/firebase.configuration'
 import { validateUser } from './api';
 import { actionType } from "./Context/reducer";
+import About from './component/About';
 import {useStateValue} from './Context/StateProvider'
 
 
