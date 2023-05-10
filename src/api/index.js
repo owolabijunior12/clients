@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:4000/";
+const baseURL = process.env.SERVER_API_CALLS;
 
 export const validateUser = async (token) => {
   try {
