@@ -125,13 +125,14 @@ export const HomeSongContainer = ({ musics }) => {
         isSongPlaying: true,
       });
     }
-    if (musics !== index) {
+    if (song !== musics[index]) { // Update comparison to use `song` instead of `musics`
       dispatch({
         type: actionType.SET_MUSICS,
-        musics: index,
+        musics: musics[index],
       });
     }
   };
+  
   return (
     <>
       {musics?.map((data, index) => (

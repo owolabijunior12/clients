@@ -38,31 +38,34 @@ const MusicPlayer = () => {
     }
   };
   const nextTrack = () => {
-    if (musics > allMusics.length) {
+    if (musicIndex >= allMusics.length - 1) {
       dispatch({
         type: actionType.SET_SONG,
-        musics: 0,
+        musicIndex: 0,
       });
     } else {
       dispatch({
         type: actionType.SET_SONG,
-       musics:musics + 1,
+        musicIndex: musicIndex + 1,
       });
     }
   };
+  
+  
   const previousTrack = () => {
-    if (musics === 0) {
+    if (musicIndex === 0) {
       dispatch({
         type: actionType.SET_SONG,
-        musics: 0,
+        musicIndex: allMusics.length - 1,
       });
     } else {
       dispatch({
         type: actionType.SET_SONG,
-        musics: musics - 1,
+        musicIndex: musicIndex - 1,
       });
     }
   };
+  
 
   useEffect(() => {
     if (musics > allMusics.length) {
@@ -71,7 +74,7 @@ const MusicPlayer = () => {
         musics: 0,
       });
     }
-  }, [ musics]);
+  }, [ ]);
 
   return (
     <div className="w-full full flex items-center gap-3 overflow-hidden">

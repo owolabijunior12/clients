@@ -406,21 +406,24 @@ export const AddNewArtist = () => {
       setTimeout(() => {
         setAlert(null);
       }, 4000);
-    }else {
+    } else {
       setIsArtist(true);
       const data = {
         name: artistName,
         imageURL: artistCoverImage,
-        twitter:`www.twitter.com/${twitter}`,
-        instagram: `www.instagram.com/${instagram}`,
+        twitter: twitter,
+        instagram: instagram
       };
       saveNewArtist(data).then((res) => {
         getAllArtists().then((artistData) => {
-          dispatch({ type: actionType.SET_ARTISTS, artists: artistData.data.artists });
-        });      
+          dispatch({
+            type: actionType.SET_ALL_ARTISTS,
+            artistData: artistData.data,
+          });
+        });
       });
       setIsArtist(false);
-      setArtistCoverImage(null); 
+      setArtistCoverImage(null);
       setArtistName("");
       setTwitter("");
       setInstagram("");

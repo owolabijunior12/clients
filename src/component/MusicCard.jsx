@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import {  IoTrash } from "react-icons/io5";
+import { IoTrash } from "react-icons/io5";
 import {
     deleteArtist,
     deleteMusic,
     deleteAlbum,
     getAllAlbums,
-    getAllArtists ,
+    getAllArtists,
     getAllMusics
 } from '../api';
 import { useStateValue } from '../Context/StateProvider';
@@ -15,70 +15,69 @@ import { storage } from '../configuration/firebase.configuration';
 import { deleteObject, ref } from 'firebase/storage';
 
 
-const MusicCard = ( {data, index,type}) => {   
-  const [{alertType,allAlbums,allArtists,allMusics,musicIndex, isSongPlaying}, dispatch] = useStateValue( )  
+const MusicCard = ({ data, index, type }) => {
+  const [{ alertType, allAlbums, allArtists, allMusics, musicIndex, isSongPlaying }, dispatch] = useStateValue()
   const [isDeleted, setIsDeleted] = useState(false);
 
-const deleteData =(data) =>{
-  console.log(data);
-  //!delete music
-  const deleteRef = ref(storage,data.imageURL);
-  deleteObject(deleteRef).then(()=>{});
-  deleteMusic(data._id).then((res)=>{
-    if(res.data){
-      getAllMusics().then((data)=>{
-        console.log(data.music)
-        dispatch({
-          type: actionType.SET_MUSICS,
-          musics: data.music,
-        })
+  const deleteData = () => {
+    console.log(data);
+    // delete music
+    const deleteRef = ref(storage, data.imageURL);
+    deleteObject(deleteRef).then(() => {
+      deleteMusic(data._id).then((res) => {
+        if (res.data) {
+          getAllMusics().then((data) => {
+            console.log(data.music)
+            dispatch({
+              type: actionType.SET_MUSICS,
+              musics: data.music,
+            })
+          })
+        }
       })
-    }
-  })
-  //! delete artist
-  deleteArtist(data._id).then((res)=>{
-    if(res.data){
-      getAllArtists().then((data)=>{
-        console.log(data.music)
-        dispatch({
-          type: actionType.SET_ARTISTS,
-          artists: data.artists,
+    })
+    // delete artist
+    deleteArtist(data._id).then((res) => {
+      if (res.data) {
+        getAllArtists().then((data) => {
+          console.log(data.music)
+          dispatch({
+            type: actionType.SET_ARTISTS,
+            artists: data.artists,
+          })
         })
-      })
-    }
-  })
-  //!delete album
-  deleteAlbum(data._id).then((res)=>{
-    if(res.data){
-      getAllAlbums().then((data)=>{
-        console.log(data.albums)
-        dispatch({
-          type: actionType.SET_ALL_ALBUMS,
-          allAlbums: data.albums,
+      }
+    })
+    // delete album
+    deleteAlbum(data._id).then((res) => {
+      if (res.data) {
+        getAllAlbums().then((data) => {
+          console.log(data.albums)
+          dispatch({
+            type: actionType.SET_ALL_ALBUMS,
+            allAlbums: data.albums,
+          })
         })
-      })
-    }
-  })
-}
-
-   
-
-const addToContext = () => {
-  console.log(type);
-  if(!isSongPlaying){
-    dispatch({
-      type: actionType.SET_SONG_PLAYING,
-      isSongPlaying:true
+      }
     })
   }
 
-  if(!musicIndex !== index){
-    dispatch({
-      type:actionType.SET_MUSICS_INDEX,  
-      musicIndex:index
-    })
+  const addToContext = () => {
+    console.log(type);
+    if (!isSongPlaying) {
+      dispatch({
+        type: actionType.SET_SONG_PLAYING,
+        isSongPlaying: true
+      })
+    }
+
+    if (musicIndex !== index) {
+      dispatch({
+        type: actionType.SET_MUSICS_INDEX,
+        musicIndex: index
+      })
+    }
   }
-}
 
   return (
   <motion.div className='relative w-40 min-w-210 px-2 cursor-pointer hover:bg-card bg-yellow-100 shadow-md flex flex-col items-center py-3 rounded-xl' 

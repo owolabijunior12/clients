@@ -3,7 +3,7 @@ export {default as Home } from "./Home"
 export {default as Header} from "./Header"
 
 export { default as Dashboard } from "./Dashboard";
-export { default as DashBoardHome } from "./DashBoardHome";
+// export { default as DashBoardHome } from "./DashBoardHome";
 export { default as DashboardAlbum } from "./DashboardAlbum";
 export { default as DashboardArtist } from "./DashboardArtist";
 export { default as DashboardMusics } from "./DashboardMusics";
